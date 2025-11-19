@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Button } from 'react-bootstrap';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; 
 
 
 function Partner() {
