@@ -1,0 +1,42 @@
+body{
+    overflow-x: hidden;
+}
+
+
+.icon-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.icon-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+}
+
+.icon-box1{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.icon-box1:hover {
+  transform: translateY(-5px);
+  
+}
+
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-border {
+  border: 1px solid #ffc107; 
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
