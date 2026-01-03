@@ -11,8 +11,8 @@ import AboutUs from './components/AboutUs'
 import Volunteer from './components/Volunteer'
 import ReadMore from './components/ReadMore'
 import Partner from './components/Partner'
-
-
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -31,7 +31,7 @@ function App() {
       <Route path='/' element={ <Landing />} />
       <Route path='/campaigns' element={ <Campaines/>}/>
       <Route path='/contact' element={<ContactUs/>}/>
-      <Route path='/donate' element={<Donation/>}/>
+      <Route path='/donation' element={<Donation/>}/>
       <Route path='/about' element={<AboutUs/>}/>
       <Route path='/volunteer' element={<Volunteer/>}/>
       <Route path='/readmore' element={<ReadMore/>}/>

@@ -1,48 +1,123 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Button, Modal, Row, Col } from "react-bootstrap";
 
 function Donation() {
-    return (
-        <div>
-            <div className="container my-5">
-                <div className="p-4 rounded shadow" style={{ backgroundColor: 'rgba(255, 193, 7, 0.1)', maxWidth: '600px', margin: '0 auto' }}>
-                    <h3 className="text-center text-warning fw-bold mb-4">Make a Donation</h3>
-                    <form>
+  const [show, setShow] = useState(false);
 
-                        <div className="mb-3">
-                            <input type="text" className="form-control" placeholder="Full Name" required />
-                        </div>
-                        <div className="mb-3">
-                            <input type="email" className="form-control" placeholder="Email Address" required />
-                        </div>
-                        <div className="mb-3">
-                            <input type="text" className="form-control" placeholder="Phone Number" required />
-                        </div>
+  return (
+    <div className="p-3">
+      {/* OPEN MODAL BUTTON */}
+      <Button variant="warning" onClick={() => setShow(true)}>
+        Donate Now
+      </Button>
 
+      {/* DONATION MODAL */}
+      <Modal show={show} onHide={() => setShow(false)} centered size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title className="fw-bold text-warning">
+            Make a Donation
+          </Modal.Title>
+        </Modal.Header>
 
-                        <div className="mb-3">
-                            <input type="number" className="form-control" placeholder="Donation Amount (₹)" required />
-                        </div>
+        <Modal.Body>
+          <p className="text-muted mb-4">
+            Your generosity helps us create a better future for communities in need.
+          </p>
 
+          <form>
+            <Row className="g-3">
+              <Col md={6}>
+                <label className="form-label fw-semibold">Full Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter your name"
+                  required
+                />
+              </Col>
 
-                        <div className="mb-3">
-                            <select className="form-select" required>
-                                <option value="">Select Payment Method</option>
-                                <option value="credit">Credit Card</option>
-                                <option value="debit">Debit Card</option>
-                                <option value="upi">UPI</option>
-                                <option value="netbanking">Net Banking</option>
-                            </select>
-                        </div>
+              <Col md={6}>
+                <label className="form-label fw-semibold">Email Address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Enter your email"
+                  required
+                />
+              </Col>
 
+              <Col md={6}>
+                <label className="form-label fw-semibold">Phone Number</label>
+                <input
+                  type="tel"
+                  className="form-control"
+                  placeholder="Enter phone number"
+                  required
+                />
+              </Col>
 
-                        <div className="text-center">
-                            <button type="submit" className="btn btn-warning px-4">Donate Now</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    )
+              <Col md={6}>
+                <label className="form-label fw-semibold">
+                  Donation Amount (₹)
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter amount"
+                  min="1"
+                  required
+                />
+              </Col>
+
+              <Col md={12}>
+                <label className="form-label fw-semibold">
+                  Donation Purpose
+                </label>
+                <select className="form-select" required>
+                  <option value="">Select a cause</option>
+                  <option>Education for Children</option>
+                  <option>Healthcare Support</option>
+                  <option>Food & Essentials</option>
+                  <option>Emergency Relief</option>
+                  <option>General Fund</option>
+                </select>
+              </Col>
+
+              <Col md={12}>
+                <label className="form-label fw-semibold">
+                  Message (Optional)
+                </label>
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  placeholder="Write a message or dedication"
+                ></textarea>
+              </Col>
+            </Row>
+          </form>
+        </Modal.Body>
+
+        <Modal.Footer className="justify-content-between">
+          <small className="text-muted">
+            Secure payment • Tax benefits may apply
+          </small>
+
+          <div>
+            <Button
+              variant="secondary"
+              className="me-2"
+              onClick={() => setShow(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="warning">
+              Proceed to Donate
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 }
 
-export default Donation
+export default Donation;

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../App.css";
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import ContactUs from "./ContactUs";
+import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 
 function Landing() {
+  const [showDonate, setShowDonate] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -41,7 +41,14 @@ function Landing() {
               </p>
 
               <div className="d-flex flex-column flex-sm-row gap-3 mt-4">
-                <Link to="/donate" className="btn btn-warning text-white rounded"> Donate Fund </Link>
+                <Button
+                  variant="warning"
+                  onClick={() => setShowDonate(true)}
+                >
+                  Donate Now
+                </Button>
+
+
 
                 <Link to="/readmore" className="btn text-white rounded" style={{ backgroundColor: "transparent", border: "2px solid #fff", }}> Read More </Link>
 
@@ -135,9 +142,12 @@ function Landing() {
                       <Card.Text>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur earum, asperiores, soluta quod velit.
                       </Card.Text>
-                      <Link to="/donate" className="btn btn-warning">
+                      <Button
+                        variant="warning"
+                        onClick={() => setShowDonate(true)}
+                      >
                         Donate Now
-                      </Link>
+                      </Button>
                     </Card.Body>
                   </div>
                 </Card>
@@ -290,7 +300,12 @@ function Landing() {
                   </div>
                 </div>
 
-                <Link to="/donate" className="btn btn-warning">Donate Now</Link>
+                <Button
+                  variant="warning"
+                  onClick={() => setShowDonate(true)}
+                >
+                  Donate Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -330,7 +345,12 @@ function Landing() {
                   </div>
                 </div>
 
-                <Link to="/donate" className="btn btn-warning">Donate Now</Link>
+                <Button
+                  variant="warning"
+                  onClick={() => setShowDonate(true)}
+                >
+                  Donate Now
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -355,7 +375,7 @@ function Landing() {
 
 
 
-      <div className="text-center text-white bg-dark" style={{ backgroundImage: "url('/images/group.jpg')", backgroundSize: "cover", backgroundPosition: "center",minHeight:"50vh", maxHeight: "700px", padding: "2rem", }}>
+      <div className="text-center text-white bg-dark" style={{ backgroundImage: "url('/images/group.jpg')", backgroundSize: "cover", backgroundPosition: "center", minHeight: "50vh", maxHeight: "700px", padding: "2rem", }}>
 
         <Container className="h-100 d-flex align-items-center">
           <Row className="w-100 justify-content-center align-items-center">
@@ -399,6 +419,167 @@ function Landing() {
 
 
 
+
+      {/* DONATE MODAL */}
+      <Modal
+        show={showDonate}
+        onHide={() => setShowDonate(false)}
+        centered
+        size="lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="fw-bold text-warning">
+            Make a Donation
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p className="text-muted mb-4">
+            Your contribution helps us support communities and create lasting impact.
+          </p>
+
+          <form>
+            <Row className="g-3">
+              {/* Donor Name */}
+              <Col md={6}>
+                <label className="form-label fw-semibold">Full Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter your name"
+                  required
+                />
+              </Col>
+
+              {/* Email */}
+              <Col md={6}>
+                <label className="form-label fw-semibold">Email Address</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Enter your email"
+                  required
+                />
+              </Col>
+
+              {/* Phone */}
+              <Col md={6}>
+                <label className="form-label fw-semibold">Phone Number</label>
+                <input
+                  type="tel"
+                  className="form-control"
+                  placeholder="Enter phone number"
+                  required
+                />
+              </Col>
+
+              {/* Donation Amount */}
+              <Col md={6}>
+                <label className="form-label fw-semibold">Donation Amount (₹)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter amount"
+                  min="1"
+                  required
+                />
+              </Col>
+
+              {/* Donation Purpose */}
+              <Col md={12}>
+                <label className="form-label fw-semibold">
+                  Donation Purpose
+                </label>
+                <select className="form-select" required>
+                  <option value="">Select a cause</option>
+                  <option>Education for Children</option>
+                  <option>Healthcare Support</option>
+                  <option>Food & Essentials</option>
+                  <option>Emergency Relief</option>
+                  <option>General Fund</option>
+                </select>
+              </Col>
+
+              {/* Message */}
+              <Col md={12}>
+                <label className="form-label fw-semibold">
+                  Message (Optional)
+                </label>
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  placeholder="Write a message or dedication"
+                ></textarea>
+              </Col>
+
+              {/* Payment Method */}
+              <Col md={12}>
+                <label className="form-label fw-semibold">
+                  Payment Method
+                </label>
+                <div className="d-flex gap-4">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="payment"
+                      id="upi"
+                      defaultChecked
+                    />
+                    <label className="form-check-label" htmlFor="upi">
+                      UPI
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="payment"
+                      id="card"
+                    />
+                    <label className="form-check-label" htmlFor="card">
+                      Card
+                    </label>
+                  </div>
+
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="payment"
+                      id="netbanking"
+                    />
+                    <label className="form-check-label" htmlFor="netbanking">
+                      Net Banking
+                    </label>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </form>
+        </Modal.Body>
+
+        <Modal.Footer className="justify-content-between">
+          <small className="text-muted">
+            100% secure payments • Tax benefits may apply
+          </small>
+
+          <div>
+            <Button
+              variant="secondary"
+              className="me-2"
+              onClick={() => setShowDonate(false)}
+            >
+              Cancel
+            </Button>
+
+            <Button variant="warning">
+              Donate Now
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
 
 
 
